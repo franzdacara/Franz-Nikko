@@ -2534,6 +2534,11 @@ _:-ms-fullscreen,
 .img-circle {
   margin-bottom: 20px;
 }
+.img-square {
+  width: 100px;
+  height: 280px;
+  object-fit: contain;
+}
 
 /*----------------------------------*/
 /*---------- Fixed for Ipad --------*/

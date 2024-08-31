@@ -1,5 +1,5 @@
 <?php
-$to = 'support@itembridge.com';
+$to = 'franzdacara25@gmail.com';
 $subject = 'You subject';
 $headers = 'From: (Your site)' . "\r\n" . 'Content-type: text/html; charset=utf-8';
 $message = '

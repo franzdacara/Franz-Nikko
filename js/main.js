@@ -52,7 +52,7 @@ var $ = jQuery;
 				$('.scrollSpy').on('inview', function(event, visible) {
 					if (visible) {
 						setTimeout(function(){
-							$('.copyright').addClass('vis');
+							$('.copyright').addClass('vis'); 
 						},1)
 					} else {
 						$('.copyright').removeClass('vis');

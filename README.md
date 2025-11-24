@@ -1,20 +1,77 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Nikko - Modern Portfolio Website
 
-# Run and deploy your AI Studio app
+A futuristic, highly technical personal portfolio website built with React, TypeScript, and Tailwind CSS. Features smooth parallax scrolling, glassmorphism effects, and neon accent colors.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/16cc88TlxyWCKbWGaV0bmSF6UKxNwc9xa
+- 🎨 Modern dark mode design with neon blue/purple accents
+- ✨ Smooth parallax scrolling effects
+- 🔮 Glassmorphism cards and UI elements
+- 🎭 3D tilt effects and micro-interactions
+- 📱 Fully responsive design
+- ⚡ Built with Vite for fast development
+
+## Tech Stack
+
+- **React 19** - UI framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling via CDN
+- **Vite** - Build tool
+- **Lucide React** - Icon library
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js (v18 or higher)
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open [http://localhost:5173](http://localhost:5173) in your browser
+
+## Build for Production
+
+```bash
+npm run build
+```
+
+The production-ready files will be in the `dist` folder.
+
+## Project Structure
+
+```
+Franz-Nikko/
+├── components/          # React components
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── About.tsx
+│   ├── Skills.tsx
+│   ├── Projects.tsx
+│   ├── Contact.tsx
+│   └── Preloader.tsx
+├── public/
+│   └── images/         # Static images
+├── App.tsx             # Main app component
+├── constants.ts        # Site content and configuration
+├── index.tsx           # Entry point
+└── index.html          # HTML template
+```
+
+## Customization
+
+Edit `constants.ts` to update:
+- Personal information
+- Project details
+- Skills and technologies
+- Social media links
+- Contact information
+
+## License
+
+MIT License - feel free to use this for your own portfolio!

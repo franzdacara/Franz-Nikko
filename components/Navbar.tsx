@@ -17,10 +17,10 @@ const Navbar: React.FC = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
-    
+
     // Handle "Home" or top of page click (logo)
     if (targetId === '' || href === '#') {
-       window.scrollTo({
+      window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
@@ -51,14 +51,13 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'glass-panel py-3 shadow-lg shadow-neon-blue/5' : 'bg-transparent py-6'
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass-panel py-3 shadow-lg shadow-neon-blue/5' : 'bg-transparent py-6'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <a 
-          href="#" 
+        <a
+          href="#"
           onClick={(e) => handleNavClick(e, '#')}
           className="flex items-center gap-2 group"
         >
@@ -103,9 +102,8 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full glass-panel border-t border-slate-800 transition-all duration-300 overflow-hidden ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`md:hidden absolute top-full left-0 w-full glass-panel border-t border-slate-800 transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <div className="flex flex-col p-6 gap-4">
           {navLinks.map((link) => (

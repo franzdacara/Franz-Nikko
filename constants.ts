@@ -1,5 +1,6 @@
 
 import { Github, Linkedin, Twitter, Facebook, Layout, Server, Terminal, Cpu, Globe, Zap, Mail, MessageSquare, MapPin } from 'lucide-react';
+import { title } from 'process';
 
 export const SITE_CONTENT = {
   brand: {
@@ -128,6 +129,15 @@ export const PROJECTS_DATA = [
     image: "/images/projects/davista.png",
     link: "https://www.youtube.com/watch?v=m6YKyCJjtlA",
     github: "#"
+  },
+  {
+    title: "NIKX",
+    category: "Web Game",
+    description: "NIKX is a web game that allows users to test their typing speed and accuracy.",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    image: "/images/projects/nikx.png",
+    link: "https://nikx-mu.vercel.app/",
+    github: "https://github.com/franzdacara/NIKX"
   },
   {
     title: "Dine Out",

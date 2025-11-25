@@ -129,12 +129,12 @@ export const PROJECTS_DATA = [
     github: "#"
   },
   {
-    title: "Void Commerce",
+    title: "Dine Out",
     category: "E-Commerce",
-    description: "Headless e-commerce solution with a focus on speed, accessibility, and immersive product interactions.",
-    tags: ["Next.js", "GraphQL", "Stripe", "Framer"],
-    image: "/images/projects/void_commerce.png",
-    link: "#",
-    github: "#"
+    description: "Dine Out is a restaurant reservation platform that allows users to book tables at their favorite restaurants with ease.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    image: "/images/projects/dinteout.png",
+    link: "https://franzdacara.github.io/Dine-Our-Restaurant/",
+    github: "https://github.com/franzdacara/Dine-Our-Restaurant"
   }
 ];

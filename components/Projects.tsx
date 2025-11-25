@@ -69,8 +69,12 @@ const Projects: React.FC = () => {
                     {project.category}
                   </span>
                   <div className="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><Github size={18} /></a>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><ExternalLink size={18} /></a>
+                    {project.github && project.github !== '#' && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><Github size={18} /></a>
+                    )}
+                    {project.link && project.link !== '#' && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><ExternalLink size={18} /></a>
+                    )}
                   </div>
                 </div>
 

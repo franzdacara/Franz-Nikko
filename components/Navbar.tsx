@@ -84,6 +84,15 @@ const Navbar: React.FC = () => {
             </a>
           ))}
           <a
+            href={SITE_CONTENT.brand.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-slate-300 hover:text-neon-blue transition-colors relative group"
+          >
+            Resume
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-blue transition-all duration-300 group-hover:w-full" />
+          </a>
+          <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
             className="px-5 py-2 rounded-full border border-neon-blue/30 text-neon-blue text-sm font-semibold hover:bg-neon-blue hover:text-neon-dark transition-all duration-300 shadow-[0_0_10px_rgba(0,243,255,0.1)] hover:shadow-[0_0_20px_rgba(0,243,255,0.4)]"
@@ -117,6 +126,14 @@ const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
+          <a
+            href={SITE_CONTENT.brand.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-300 hover:text-neon-blue font-medium py-2"
+          >
+            Resume
+          </a>
         </div>
       </div>
     </nav>

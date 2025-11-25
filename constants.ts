@@ -4,7 +4,8 @@ import { Github, Linkedin, Twitter, Facebook, Layout, Server, Terminal, Cpu, Glo
 export const SITE_CONTENT = {
   brand: {
     name: "NIKKO",
-    domain: ".DEV"
+    domain: ".DEV",
+    resume: "/CV/RESUME(DACARA).pdf"
   },
   hero: {
     greeting: "Hi, I'm",
@@ -22,7 +23,7 @@ export const SITE_CONTENT = {
     title: "Refining the Digital Experience",
     description: [
       "I'm Nikko, a passionate developer with a deep interest in modern web technologies and interactive design. My journey began with a curiosity for how things work under the hood, leading me to master the art of full-stack development.",
-      "I specialize in building scalable applications using React, TypeScript, and Node.js. When I'm not coding, I'm exploring new tech trends, optimizing algorithms, or designing intuitive user interfaces."
+      "I specialize in PHP with Laravel Framework for backend development, and I love working with modern frontend frameworks like Vue.js and React.js. When I'm not coding, I'm exploring new tech trends, optimizing algorithms, or designing intuitive user interfaces."
     ],
     image: "/images/profile/profile_about.jpg",
     stats: [
@@ -49,12 +50,12 @@ export const SKILLS_DATA = [
   {
     title: "Frontend",
     icon: Layout,
-    skills: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Vue.js", "Flutter", "Blender"]
+    skills: ["Vue.js", "React", "TypeScript", "Tailwind CSS", "Next.js", "Flutter", "Blender"]
   },
   {
     title: "Backend",
     icon: Server,
-    skills: ["PHP", "Laravel", "Python", "JavaScript", "MySQL", "MongoDB", "GraphQL"]
+    skills: ["PHP", "Laravel", "MySQL", "Python", "JavaScript", "MongoDB", "GraphQL"]
   },
   {
     title: "Tools & DevOps",

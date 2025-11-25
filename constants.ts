@@ -1,5 +1,5 @@
 
-import { Github, Linkedin, Twitter, Layout, Server, Terminal, Cpu, Globe, Zap, Mail, MessageSquare, MapPin } from 'lucide-react';
+import { Github, Linkedin, Twitter, Facebook, Layout, Server, Terminal, Cpu, Globe, Zap, Mail, MessageSquare, MapPin } from 'lucide-react';
 
 export const SITE_CONTENT = {
   brand: {
@@ -34,13 +34,13 @@ export const SITE_CONTENT = {
   contact: {
     title: "Let's Connect",
     description: "Have a project in mind or just want to discuss the latest in tech? Send me a signal. I'm always open to new opportunities and collaborations.",
-    email: "hello@nikko.dev",
-    socialHandle: "@nikkodev",
-    location: "San Francisco, CA (Remote)",
+    email: "franzdacara25@gmail.com",
+    socialHandle: "@nikkodacara",
+    location: "Davao City, Philippines",
     socialLinks: [
-      { platform: "Github", url: "https://github.com", icon: Github },
-      { platform: "Linkedin", url: "https://linkedin.com", icon: Linkedin },
-      { platform: "Twitter", url: "https://twitter.com", icon: Twitter }
+      { platform: "Github", url: "https://github.com/franzdacara", icon: Github },
+      { platform: "Linkedin", url: "https://www.linkedin.com/in/nikkodacara/", icon: Linkedin },
+      { platform: "Facebook", url: "https://www.facebook.com/franz.dacara", icon: Facebook }
     ]
   }
 };
@@ -49,37 +49,83 @@ export const SKILLS_DATA = [
   {
     title: "Frontend",
     icon: Layout,
-    skills: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Framer Motion", "Three.js"]
+    skills: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Vue.js", "Flutter", "Blender"]
   },
   {
     title: "Backend",
     icon: Server,
-    skills: ["Node.js", "Python", "PostgreSQL", "GraphQL", "Redis", "Docker"]
+    skills: ["PHP", "Laravel", "Python", "JavaScript", "MySQL", "MongoDB", "GraphQL"]
   },
   {
     title: "Tools & DevOps",
     icon: Terminal,
-    skills: ["Git", "AWS", "Linux", "CI/CD", "Jest", "Webpack"]
+    skills: ["Git", "GitHub", "Docker", "Cpanel", "Linux", "CI/CD", "Nginx", "AWS"]
+  }
+];
+
+export const EXPERIENCE_DATA = [
+  {
+    company: "EBOS Cloud Accountants",
+    role: "Full-stack Developer",
+    period: "Sep 2025 - Present",
+    type: "Full-time",
+    description: "Specializing in maintaining and development a Hospital Information System that provides healthcare solutions. My focus involves maintaining and securing confidential hospital information. I contribute to developing software applications that handle sensitive data with top-notch security measures. Committed to advancing healthcare technology, I aim to empower institutions with innovative solutions while prioritizing data confidentiality.",
+    technologies: ["Laravel", "Python", "PHP", "Flutter", "JavaScript", "MySQL", "JQuery", "Bootstrap", "Tailwind CSS", "Git", "GitHub", "Cpanel", "Linux", "CI/CD", "Nginx", "AWS"]
+  },
+  {
+    company: "EBOS Cloud Accountants",
+    role: "Back End Developer",
+    period: "Aug 2025 - Sep 2025",
+    type: "Remote",
+    description: "Focused on backend development and optimization.",
+    technologies: ["Laravel", "PHP", "Vue.js"]
+  },
+  {
+    company: "Segworks Technologies Corporation",
+    role: "Software Developer",
+    period: "Sep 2023 - Aug 2025",
+    type: "Hybrid",
+    location: "Davao, Philippines",
+    description: "Specializing in maintaining and development a Hospital Information System that provides healthcare solutions. My focus involves maintaining and securing confidential hospital information. I contribute to developing software applications that handle sensitive data with top-notch security measures.",
+    technologies: ["Flutter", "PHP", "Laravel", "JavaScript", "MySQL", "JQuery", "Bootstrap", "Tailwind CSS", "Git", "GitHub", "Cpanel", "Linux", "CI/CD", "Nginx", "AWS"]
+  },
+  {
+    company: "Freelance",
+    role: "Web Developer",
+    period: "Nov 2022 - Jan 2025",
+    type: "Freelance",
+    location: "Remote",
+    description: "I offer freelance web development services, crafting both personal and company websites to showcase their unique services and identity. Whether you need a personal site or a platform to promote your company's offerings, I'm here to bring your vision to life.",
+    technologies: ["JavaScript", "MySQL", "HTML", "CSS", "Wordpress", "PHP", "Laravel"]
+  },
+  {
+    company: "SPLACE BPO",
+    role: "Software Developer",
+    period: "Feb 2023 - May 2023",
+    type: "Internship",
+    location: "Davao, Philippines",
+    description: "Recognized as the \"Best Intern\" by SPLACE in June 2023 for outstanding contributions in accomplishing the company's request system. Demonstrated exceptional dedication and skill in software development during the internship period.",
+    technologies: ["JavaScript", "MySQL", "PHP", "DigitalOcean"]
   }
 ];
 
 export const PROJECTS_DATA = [
   {
-    title: "Neon Nexus",
-    category: "Dashboard UI",
-    description: "A futuristic data visualization dashboard for crypto analytics featuring real-time socket connections and WebGL charts.",
-    tags: ["React", "Three.js", "WebSocket", "Tailwind"],
-    image: "https://picsum.photos/seed/nexus/800/600",
-    link: "#",
+    title: "Shape and Glow",
+    category: "Wordpress Website",
+    description: "A website for a beauty salon that showcases their services and products.",
+    tags: ["Wordpress", "PHP", "Cpanel", "Linux"],
+    image: "/images/projects/shape_and_glow.png",
+    link: "https://www.shapeandglow.com.au/",
     github: "#"
   },
   {
-    title: "Echo Chat",
-    category: "AI Communication",
-    description: "Real-time messaging platform integrated with LLMs for smart replies and automated translation services.",
-    tags: ["TypeScript", "Node.js", "OpenAI", "Socket.io"],
-    image: "https://picsum.photos/seed/echo/800/600",
-    link: "#",
+    title: "Davista - Davao Tourism Game",
+    category: "Game",
+    description: "Davista is a captivating tourism game that immerses players in Davao City's vibrant culture and rich history. Players explore iconic landmarks while uncovering historical facts and trivia through engaging gameplay.",
+    tags: ["Unreal Engine 5", "3D Modeling", "Game Design", "Blueprint Scripting"],
+    image: "/images/projects/davista.png",
+    link: "https://www.youtube.com/watch?v=m6YKyCJjtlA",
     github: "#"
   },
   {
@@ -87,7 +133,7 @@ export const PROJECTS_DATA = [
     category: "E-Commerce",
     description: "Headless e-commerce solution with a focus on speed, accessibility, and immersive product interactions.",
     tags: ["Next.js", "GraphQL", "Stripe", "Framer"],
-    image: "https://picsum.photos/seed/void/800/600",
+    image: "/images/projects/void_commerce.png",
     link: "#",
     github: "#"
   }

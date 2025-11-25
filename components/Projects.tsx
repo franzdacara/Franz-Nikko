@@ -3,21 +3,21 @@ import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
 
 const Projects: React.FC = () => {
-  
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     // Calculate rotation based on cursor position relative to center
     // Max rotation: 10 degrees
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = ((y - centerY) / centerY) * -10;
     const rotateY = ((x - centerX) / centerX) * 10;
-    
+
     card.style.setProperty('--rx', `${rotateX}deg`);
     card.style.setProperty('--ry', `${rotateY}deg`);
     card.style.setProperty('--s', '1.02'); // Scale up slightly
@@ -45,19 +45,19 @@ const Projects: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 perspective-1000">
           {PROJECTS_DATA.map((project, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="group relative rounded-2xl overflow-hidden glass-panel border border-slate-800 hover:border-neon-blue/50 tilt-card"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
-              
+
               {/* Image Container with 3D Depth */}
               <div className="relative h-64 overflow-hidden tilt-card-content">
                 <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10" />
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
+                <img
+                  src={project.image}
+                  alt={project.title}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
               </div>
@@ -69,8 +69,8 @@ const Projects: React.FC = () => {
                     {project.category}
                   </span>
                   <div className="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                    <a href={project.github} className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><Github size={18} /></a>
-                    <a href={project.link} className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><ExternalLink size={18} /></a>
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><Github size={18} /></a>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><ExternalLink size={18} /></a>
                   </div>
                 </div>
 
@@ -90,9 +90,9 @@ const Projects: React.FC = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="mt-8 text-center md:hidden">
-            <a href="#" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+          <a href="#" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
             View all projects <ArrowRight size={16} />
           </a>
         </div>

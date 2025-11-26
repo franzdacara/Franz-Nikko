@@ -66,7 +66,7 @@ const Hero: React.FC = () => {
         </h1>
 
         <p className="max-w-2xl text-lg md:text-xl text-slate-400 mb-10 leading-relaxed backdrop-blur-sm">
-          A <span className="text-neon-purple font-semibold">{hero.title}</span> {hero.subtitle}
+          A <span className="text-neon-purple font-semibold">{hero.title}</span> fusing <span className="text-neon-blue font-semibold">AI Intelligence</span> with <span className="text-neon-purple font-semibold">Tech Innovation</span>.
           <br className="hidden md:block" />
           {hero.description}
         </p>

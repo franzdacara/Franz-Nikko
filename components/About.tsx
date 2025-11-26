@@ -34,7 +34,7 @@ const About: React.FC = () => {
 
           {/* Image/Visual Side with 3D Tilt */}
           <div
-            className="w-full md:w-1/2 relative group perspective-1000"
+            className="w-full md:w-1/3 relative group perspective-1000"
           >
             <div
               className="tilt-card"

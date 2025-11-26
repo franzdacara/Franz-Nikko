@@ -7,6 +7,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Preloader from './components/Preloader';
+import ChatBot from './components/ChatBot';
 import { ArrowUp } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
   return (
     <>
       {loading && <Preloader onComplete={() => setLoading(false)} />}
+      <ChatBot />
 
       <div className={`relative min-h-screen bg-neon-dark selection:bg-neon-blue selection:text-neon-dark overflow-x-hidden transition-opacity duration-700 ${loading ? 'opacity-0 overflow-hidden h-screen' : 'opacity-100'}`}>
         {/* Dynamic Parallax Background */}

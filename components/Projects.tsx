@@ -43,17 +43,17 @@ const Projects: React.FC = () => {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 perspective-1000">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000 max-w-7x1 mx-auto h-screen">
           {PROJECTS_DATA.map((project, idx) => (
             <div
               key={idx}
-              className="group relative rounded-2xl overflow-hidden glass-panel border border-slate-800 hover:border-neon-blue/50 tilt-card"
+              className="group relative rounded-xl overflow-hidden glass-panel border border-slate-800 hover:border-neon-blue/50 tilt-card"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
 
               {/* Image Container with 3D Depth */}
-              <div className="relative h-64 overflow-hidden tilt-card-content">
+              <div className="relative h-48 overflow-hidden tilt-card-content">
                 <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10" />
                 <img
                   src={project.image}
@@ -63,31 +63,31 @@ const Projects: React.FC = () => {
               </div>
 
               {/* Content */}
-              <div className="p-8 relative z-20 bg-slate-900/90 backdrop-blur-xl lg:translate-y-12 lg:group-hover:translate-y-0 transition-transform duration-500 h-full tilt-card-content">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xs font-mono text-neon-blue px-2 py-1 rounded bg-neon-blue/10 border border-neon-blue/20">
+              <div className="p-6 relative z-20 bg-slate-900/90 backdrop-blur-xl lg:translate-y-8 lg:group-hover:translate-y-0 transition-transform duration-500 h-full tilt-card-content">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-[10px] font-mono text-neon-blue px-2 py-0.5 rounded bg-neon-blue/10 border border-neon-blue/20">
                     {project.category}
                   </span>
-                  <div className="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                  <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                     {project.github && project.github !== '#' && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><Github size={18} /></a>
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><Github size={16} /></a>
                     )}
                     {project.link && project.link !== '#' && (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><ExternalLink size={18} /></a>
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transform hover:scale-125 transition-transform"><ExternalLink size={16} /></a>
                     )}
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-neon-blue transition-colors">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-slate-400 mb-6 text-sm leading-relaxed">
+                <p className="text-slate-400 mb-4 text-xs leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {project.tags.map((tag, tIdx) => (
-                    <span key={tIdx} className="text-xs font-medium text-slate-500">#{tag}</span>
+                    <span key={tIdx} className="text-[10px] font-medium text-slate-500 border border-slate-800 px-1.5 py-0.5 rounded">#{tag}</span>
                   ))}
                 </div>
               </div>

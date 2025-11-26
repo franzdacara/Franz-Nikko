@@ -19,7 +19,7 @@ const Contact: React.FC = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="flex flex-col items-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:border-neon-purple/50 transition-all group">
+            <div className="flex cursor-pointer flex-col items-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:border-neon-purple/50 transition-all group">
               <div className="p-4 bg-slate-800 rounded-xl text-neon-purple mb-4 group-hover:scale-110 transition-transform">
                 <Mail size={24} />
               </div>
@@ -29,7 +29,7 @@ const Contact: React.FC = () => {
               </a>
             </div>
 
-            <div className="flex flex-col items-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:border-neon-blue/50 transition-all group">
+            <div className="flex cursor-pointer flex-col items-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:border-neon-blue/50 transition-all group">
               <div className="p-4 bg-slate-800 rounded-xl text-neon-blue mb-4 group-hover:scale-110 transition-transform">
                 <MessageSquare size={24} />
               </div>
@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
               <p className="text-slate-400 text-sm">{contact.socialHandle}</p>
             </div>
 
-            <div className="flex flex-col items-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:border-pink-500/50 transition-all group">
+            <div className="flex cursor-pointer flex-col items-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50 hover:border-pink-500/50 transition-all group">
               <div className="p-4 bg-slate-800 rounded-xl text-pink-500 mb-4 group-hover:scale-110 transition-transform">
                 <MapPin size={24} />
               </div>

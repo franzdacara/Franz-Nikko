@@ -10,8 +10,7 @@ const COOLDOWN_DURATION = 5; // Seconds
 const MODELS = [
     "google/gemini-2.0-flash-exp:free",
     "google/gemini-2.0-flash-thinking-exp:free",
-    "meta-llama/llama-3.2-3b-instruct:free",
-    "microsoft/phi-3-medium-128k-instruct:free"
+    "meta-llama/llama-3.2-3b-instruct:free"
 ];
 
 // Prepare minified data for AI context to save tokens

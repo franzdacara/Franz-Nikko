@@ -150,7 +150,7 @@ export const PROJECTS_DATA = [
   },
   {
     title: "NiksBakerySystem",
-    category: "A Simple Bakery Management System no DB",
+    category: "Inventory Management System",
     description: "A simple bakery management system that allows users to manage their bakery's inventory and sales.",
     tags: ["Typescript, React, Tailwind CSS, Vite, Git, GitHub, Vercel"],
     image: "/images/projects/niks_bakery_system.png",

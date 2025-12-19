@@ -147,5 +147,14 @@ export const PROJECTS_DATA = [
     image: "/images/projects/dinteout.png",
     link: "https://franzdacara.github.io/Dine-Our-Restaurant/",
     github: "https://github.com/franzdacara/Dine-Our-Restaurant"
+  },
+  {
+    title: "NiksBakerySystem",
+    category: "A Simple Bakery Management System no DB",
+    description: "A simple bakery management system that allows users to manage their bakery's inventory and sales.",
+    tags: ["Typescript, React, Tailwind CSS, Vite, Git, GitHub, Vercel"],
+    image: "/images/projects/niks_bakery_system.png",
+    link: "https://niks-bakery-system.vercel.app/",
+    github: "https://github.com/franzdacara/NiksBakerySystem"
   }
 ];

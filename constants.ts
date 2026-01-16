@@ -26,7 +26,7 @@ export const SITE_CONTENT = {
       "I'm Nikko, a passionate developer with a deep interest in modern web technologies and interactive design. My journey began with a curiosity for how things work under the hood, leading me to master the art of full-stack development.",
       "I specialize in PHP with Laravel Framework for backend development, and I love working with modern frontend frameworks like Vue.js and React.js. When I'm not coding, I'm exploring new tech trends, optimizing algorithms, or designing intuitive user interfaces."
     ],
-    image: "/images/profile/profile_about.jpg",
+    image: "/images/profile/NIKKO.jpg",
     stats: [
       { label: "Fast", description: "Optimized for speed and efficiency.", icon: Cpu },
       { label: "Global", description: "Accessible and responsive design.", icon: Globe },

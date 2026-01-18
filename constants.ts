@@ -156,5 +156,14 @@ export const PROJECTS_DATA = [
     image: "/images/projects/niks_bakery_system.png",
     link: "https://niks-bakery-system.vercel.app/",
     github: "https://github.com/franzdacara/NiksBakerySystem"
+  },
+  {
+    title: "E-Resonz",
+    category: "Optical Character Recognition (OCR)",
+    description: "E-Resonz is a web application that allows users to upload an image and extract text from it.",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Git", "Python", "SQL", "FastAPI", "Ollama", "Cpanel", "Linux", "CI/CD", "Nginx", "AWS"],
+    image: "/images/projects/E_Resonz.png",
+    link: "https://test.app-prokakis.com/",
+    github: "#"
   }
 ];

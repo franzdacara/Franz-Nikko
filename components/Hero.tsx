@@ -3,6 +3,7 @@ import { ArrowDown } from 'lucide-react';
 import { SITE_CONTENT } from '../constants';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import StarfieldBackground from './StarfieldBackground';
+import VisitorCounter from './VisitorCounter';
 
 const Hero: React.FC = () => {
   const { hero, contact } = SITE_CONTENT;
@@ -128,6 +129,14 @@ const Hero: React.FC = () => {
               <div>
                 <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase block mb-1">Timezone</span>
                 <span className="text-xs text-text-muted font-mono">UTC+08:00 (PHT)</span>
+              </div>
+              <div className="pt-2 border-t border-border/50">
+                <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase block mb-1">Telemetry</span>
+                <span className="text-xs font-mono text-text-muted flex items-center justify-end gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                  <VisitorCounter variant="minimal" />
+                  <span className="text-[10px] text-text-muted tracking-wider">VISITS</span>
+                </span>
               </div>
             </div>
           </div>

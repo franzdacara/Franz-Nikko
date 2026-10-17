@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Preloader from './components/Preloader';
 import ChatBot from './components/ChatBot';
 import ArchitecturalBackground from './components/ArchitecturalBackground';
+import VisitorCounter from './components/VisitorCounter';
 import { ArrowUp } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -50,10 +51,11 @@ const App: React.FC = () => {
 
         {/* Footer */}
         <footer className="relative z-10 py-6 border-t border-border">
-          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="font-mono text-xs text-text-muted tracking-wide">
               © {new Date().getFullYear()} Nikko Dacara
             </p>
+            <VisitorCounter variant="footer" />
             <p className="font-mono text-xs text-text-muted tracking-wide">
               React · TypeScript · Tailwind
             </p>

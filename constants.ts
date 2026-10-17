@@ -10,7 +10,7 @@ export const SITE_CONTENT = {
   hero: {
     greeting: "Hi, I'm",
     name: "NIKKO",
-    title: "Full-Stack Developer | DevOps Engineer",
+    title: "Full Stack & AI Engineer",
     subtitle: "Architecting resilient healthcare systems, local AI pipelines, and automated cloud infrastructure.",
     description: "Laravel · Python · React · Flutter · Docker · CI/CD — specializing in automated pipelines, intelligent document APIs, and mission-critical systems.",
     status: "Open to Work",
@@ -36,7 +36,6 @@ export const SITE_CONTENT = {
     title: "Get in Touch",
     description: "Available for full-time roles, contract work, and technical consulting. Based in Davao City — open to remote.",
     email: "franzdacara25@gmail.com",
-    phone: "+63264249587",
     socialHandle: "@nikkodacara",
     location: "Davao City, Philippines",
     socialLinks: [

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Phone, ArrowUpRight, Send, CheckCircle2, Loader2, MessageSquare, Calendar, Clock, Video, CalendarPlus } from 'lucide-react';
+import { Mail, MapPin, ArrowUpRight, Send, CheckCircle2, Loader2, MessageSquare, Calendar, Clock, Video, CalendarPlus } from 'lucide-react';
 import { SITE_CONTENT } from '../constants';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
@@ -131,21 +131,6 @@ const Contact: React.FC = () => {
                     <ArrowUpRight size={12} className="text-text-muted group-hover:text-accent transition-colors" />
                   </a>
                 </div>
-
-                {contact.phone && (
-                  <div className="pt-3 border-t border-border">
-                    <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase block mb-1">
-                      Phone / Mobile
-                    </span>
-                    <a
-                      href={`tel:${contact.phone}`}
-                      className="text-sm font-medium text-text-primary hover:text-accent transition-colors flex items-center gap-2"
-                    >
-                      <Phone size={14} className="text-accent" />
-                      {contact.phone}
-                    </a>
-                  </div>
-                )}
 
                 <div className="pt-3 border-t border-border">
                   <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase block mb-1">
@@ -415,7 +400,7 @@ const Contact: React.FC = () => {
                             >
                               <option value="Google Meet">Google Meet</option>
                               <option value="Zoom Meeting">Zoom Meeting</option>
-                              <option value="WhatsApp / Phone Call">WhatsApp / Phone Call</option>
+                              <option value="Discord / Online Call">Discord / Online Call</option>
                             </select>
                           </div>
                         </div>

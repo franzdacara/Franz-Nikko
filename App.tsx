@@ -10,6 +10,7 @@ import Preloader from './components/Preloader';
 import ChatBot from './components/ChatBot';
 import ArchitecturalBackground from './components/ArchitecturalBackground';
 import VisitorCounter from './components/VisitorCounter';
+import { Analytics } from '@vercel/analytics/react';
 import { ArrowUp } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <Analytics />
       {loading && <Preloader onComplete={() => setLoading(false)} />}
       <ChatBot />
 

@@ -2,84 +2,108 @@ import React from 'react';
 import { SITE_CONTENT } from '../constants';
 
 const About: React.FC = () => {
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    // Tilt the image container
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
-
-    card.style.setProperty('--rx', `${rotateX}deg`);
-    card.style.setProperty('--ry', `${rotateY}deg`);
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    card.style.setProperty('--rx', '0deg');
-    card.style.setProperty('--ry', '0deg');
-  };
-
   const { about } = SITE_CONTENT;
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center gap-16">
+    <section id="about" className="py-24 relative border-t border-border">
+      <div className="max-w-7xl mx-auto px-6">
 
-          {/* Image/Visual Side with 3D Tilt */}
-          <div
-            className="w-full md:w-1/3 relative group perspective-1000"
-          >
-            <div
-              className="tilt-card"
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue to-neon-purple opacity-20 rounded-2xl blur-xl group-hover:opacity-30 transition-opacity duration-500 -z-10" />
-              <div className="relative rounded-2xl overflow-hidden border border-slate-700 glass-panel p-2">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+          {/* Image & Quick Spec Card — left column */}
+          <div className="lg:col-span-4">
+            <div className="sticky top-24 space-y-4">
+              <div className="border border-border overflow-hidden bg-surface-raised">
                 <img
                   src={about.image}
-                  alt="Developer Profile"
-                  className="w-full h-auto rounded-xl filter grayscale hover:grayscale-0 transition-all duration-500"
+                  alt="Franz Nikko Dacara"
+                  className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-500"
                 />
-                <div className="absolute bottom-4 right-4 bg-black/80 backdrop-blur text-xs font-mono px-3 py-1 rounded text-neon-blue border border-neon-blue/20 tilt-card-content shadow-lg">
-                  System.ready
+              </div>
+              <div className="flex justify-between items-center px-1">
+                <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase">Franz Nikko Dacara</span>
+                <span className="font-mono text-[11px] text-accent">v2.0</span>
+              </div>
+
+              {/* Developer Spec / CV Quick Info Card */}
+              <div className="border border-border p-4 bg-surface-raised space-y-3 font-mono text-xs">
+                <div className="flex justify-between items-center text-text-muted pb-2 border-b border-border">
+                  <span className="text-[11px] uppercase tracking-wider">Role</span>
+                  <span className="text-text-primary text-right font-sans font-medium">Full-Stack & DevOps</span>
+                </div>
+                <div className="flex justify-between items-center text-text-muted pb-2 border-b border-border">
+                  <span className="text-[11px] uppercase tracking-wider">Location</span>
+                  <span className="text-text-primary">Davao City, PH</span>
+                </div>
+                <div className="flex justify-between items-center text-text-muted pb-2 border-b border-border">
+                  <span className="text-[11px] uppercase tracking-wider">Education</span>
+                  <span className="text-text-primary text-right">BSIT · Honors</span>
+                </div>
+                <div className="flex justify-between items-center text-text-muted">
+                  <span className="text-[11px] uppercase tracking-wider">Status</span>
+                  <span className="text-accent flex items-center gap-1.5 font-semibold">
+                    <span className="w-1.5 h-1.5 bg-accent inline-block"></span>
+                    Open to Work
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Content Side */}
-          <div className="w-full md:w-1/2">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              {about.title.split(' ').map((word, i) =>
-                i === 1 ? <span key={i} className="text-neon-blue"> {word} </span> : word + ' '
-              )}
+          {/* Content — right column */}
+          <div className="lg:col-span-8">
+            <span className="section-label block mb-4">About</span>
+            <h2 className="text-heading text-text-primary mb-8">
+              {about.title}
             </h2>
-            {about.description.map((paragraph, idx) => (
-              <p key={idx} className="text-slate-400 text-lg leading-relaxed mb-6">
-                {paragraph}
-              </p>
-            ))}
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
-              {about.stats.map((stat, idx) => {
-                const Icon = stat.icon;
-                return (
-                  <div key={idx} className="p-4 rounded-xl border border-slate-800 bg-slate-900/50 hover:border-neon-blue/50 transition-colors">
-                    <Icon className="text-neon-purple mb-3" size={24} />
-                    <h3 className="font-bold text-white mb-1">{stat.label}</h3>
-                    <p className="text-sm text-slate-500">{stat.description}</p>
-                  </div>
-                );
-              })}
+            <div className="space-y-6 mb-12">
+              {about.description.map((paragraph, idx) => (
+                <p key={idx} className="text-text-secondary leading-relaxed text-[15px]">
+                  {paragraph}
+                </p>
+              ))}
             </div>
+
+            {/* Stats row — horizontal metrics */}
+            <div className="border-t border-border pt-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                {about.stats.map((stat, idx) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div key={idx} className="group">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Icon size={16} className="text-accent" />
+                        <span className="font-mono text-lg font-bold text-text-primary group-hover:text-accent transition-colors duration-150">
+                          {stat.label}
+                        </span>
+                      </div>
+                      <p className="text-sm text-text-muted leading-relaxed pl-7">
+                        {stat.description}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Education & Credentials Banner */}
+            <div className="mt-12 p-6 border border-border bg-surface-raised flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <span className="font-mono text-[11px] text-accent uppercase tracking-wider block mb-1">Education & Honors</span>
+                <h4 className="text-base font-semibold text-text-primary">Bachelor of Science in Information Technology</h4>
+                <p className="text-xs text-text-muted mt-1">Jose Maria College Foundation Inc. · Administrator's List (Honors) · Sep 2019 – Jun 2023</p>
+              </div>
+              <a
+                href={SITE_CONTENT.brand.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-4 py-2 border border-border text-xs font-mono text-text-secondary hover:text-text-primary hover:border-text-muted transition-colors whitespace-nowrap self-start md:self-auto"
+              >
+                Download CV →
+              </a>
+            </div>
+
           </div>
         </div>
       </div>

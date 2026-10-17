@@ -1,6 +1,5 @@
 
-import { Github, Linkedin, Twitter, Facebook, Layout, Server, Terminal, Cpu, Globe, Zap, Mail, MessageSquare, MapPin } from 'lucide-react';
-import { title } from 'process';
+import { Github, Linkedin, Facebook, Layout, Server, Terminal, Cpu, Globe, Zap, Award } from 'lucide-react';
 
 export const SITE_CONTENT = {
   brand: {
@@ -11,32 +10,33 @@ export const SITE_CONTENT = {
   hero: {
     greeting: "Hi, I'm",
     name: "NIKKO",
-    title: "Software Developer",
-    subtitle: "Architecting the digital future.",
-    description: "I build immersive web experiences with code and creativity. Specializing in React, TypeScript, and modern UI/UX.",
-    status: "Available for Hire",
+    title: "Full-Stack Developer | DevOps Engineer",
+    subtitle: "Architecting resilient healthcare systems, local AI pipelines, and automated cloud infrastructure.",
+    description: "Laravel · Python · React · Flutter · Docker · CI/CD — specializing in automated pipelines, intelligent document APIs, and mission-critical systems.",
+    status: "Open to Work",
     cta: {
-      primary: "View Work",
-      secondary: "Contact Me"
+      primary: "View Projects",
+      secondary: "Download CV"
     }
   },
   about: {
-    title: "Refining the Digital Experience",
+    title: "Building Scalable Systems & Automated Pipelines",
     description: [
-      "I'm Nikko, a passionate developer with a deep interest in modern web technologies and interactive design. My journey began with a curiosity for how things work under the hood, leading me to master the art of full-stack development.",
-      "I specialize in PHP with Laravel Framework for backend development, and I love working with modern frontend frameworks like Vue.js and React.js. When I'm not coding, I'm exploring new tech trends, optimizing algorithms, or designing intuitive user interfaces."
+      "Full-Stack Developer and DevOps Engineer based in Davao City, Philippines. I specialize in building scalable web applications, integrating local AI/OCR services, and automating CI/CD release pipelines.",
+      "My work spans developing OCR-driven document processing APIs, maintaining high-availability Hospital Information Systems (HIS), and building clinical mobile applications in Flutter. I bridge backend architecture, modern frontend interfaces, and reliable deployment workflows to solve complex operational challenges."
     ],
     image: "/images/profile/NIKKO.jpg",
     stats: [
-      { label: "Fast", description: "Optimized for speed and efficiency.", icon: Cpu },
-      { label: "Global", description: "Accessible and responsive design.", icon: Globe },
-      { label: "Dynamic", description: "Interactive and fluid animations.", icon: Zap }
+      { label: "10 HIS Systems", description: "Maintained 10 hospital information systems & PhilHealth V2 automation.", icon: Globe },
+      { label: "Local AI & CI/CD", description: "OCR web APIs with local AI models & automated deployment pipelines.", icon: Cpu },
+      { label: "BSIT Honors", description: "Administrator's List honor graduate, Jose Maria College Foundation Inc.", icon: Award }
     ]
   },
   contact: {
-    title: "Let's Connect",
-    description: "Have a project in mind or just want to discuss the latest in tech? Send me a signal. I'm always open to new opportunities and collaborations.",
+    title: "Get in Touch",
+    description: "Available for full-time roles, contract work, and technical consulting. Based in Davao City — open to remote.",
     email: "franzdacara25@gmail.com",
+    phone: "+63264249587",
     socialHandle: "@nikkodacara",
     location: "Davao City, Philippines",
     socialLinks: [
@@ -49,121 +49,194 @@ export const SITE_CONTENT = {
 
 export const SKILLS_DATA = [
   {
-    title: "Frontend",
+    title: "Frontend & Mobile",
     icon: Layout,
-    skills: ["Vue.js", "React", "TypeScript", "Tailwind CSS", "Next.js", "Flutter", "Blender"]
+    skills: ["React.js", "Vue.js", "Angular", "Flutter", "React Native", "JavaScript", "TypeScript", "Tailwind CSS", "Bootstrap", "WordPress"]
   },
   {
-    title: "Backend",
+    title: "Backend & Languages",
     icon: Server,
-    skills: ["PHP", "Laravel", "MySQL", "Python", "JavaScript", "MongoDB", "GraphQL"]
+    skills: ["PHP", "Laravel", "Python", "Dart", "C++", "C#", "MySQL", "MongoDB", "FastAPI"]
   },
   {
-    title: "Tools & DevOps",
+    title: "DevOps & Infrastructure",
     icon: Terminal,
-    skills: ["Git", "GitHub", "Docker", "Cpanel", "Linux", "CI/CD", "Nginx", "AWS"]
+    skills: ["CI/CD Pipelines", "Docker", "Git", "GitHub", "cPanel", "Linux", "Nginx", "AWS"]
   }
 ];
 
 export const EXPERIENCE_DATA = [
   {
     company: "EBOS Cloud Accountants",
-    role: "Full-stack Developer",
-    period: "Sep 2025 - Present",
+    role: "Full-Stack Developer",
+    period: "Jul 2025 — Present",
     type: "Full-time",
-    description: "Specializing in maintaining and development a Hospital Information System that provides healthcare solutions. My focus involves maintaining and securing confidential hospital information. I contribute to developing software applications that handle sensitive data with top-notch security measures. Committed to advancing healthcare technology, I aim to empower institutions with innovative solutions while prioritizing data confidentiality.",
-    technologies: ["Laravel", "Python", "PHP", "Flutter", "JavaScript", "MySQL", "JQuery", "Bootstrap", "Tailwind CSS", "Git", "GitHub", "Cpanel", "Linux", "CI/CD", "Nginx", "AWS"]
+    location: "Remote",
+    description: "Designed and developed an OCR-based AI Web API integrating local AI models to automate document processing and data extraction. Integrated new APIs into the core accounting platform to enhance functionality and system interoperability, while leading and managing automated CI/CD pipelines for reliable releases.",
+    technologies: ["Python", "FastAPI", "Local AI / Ollama", "PHP", "Laravel", "CI/CD", "Docker", "MySQL", "Git", "AWS"]
   },
   {
-    company: "EBOS Cloud Accountants",
-    role: "Back End Developer",
-    period: "Aug 2025 - Sep 2025",
-    type: "Remote",
-    description: "Focused on backend development and optimization.",
-    technologies: ["Laravel", "PHP", "Vue.js"]
-  },
-  {
-    company: "Segworks Technologies Corporation",
-    role: "Software Developer",
-    period: "Sep 2023 - Aug 2025",
-    type: "Hybrid",
+    company: "Segworks Technologies",
+    role: "Web & Mobile Developer",
+    period: "Aug 2023 — Jul 2025",
+    type: "Full-time",
     location: "Davao, Philippines",
-    description: "Specializing in maintaining and development a Hospital Information System that provides healthcare solutions. My focus involves maintaining and securing confidential hospital information. I contribute to developing software applications that handle sensitive data with top-notch security measures.",
-    technologies: ["Flutter", "PHP", "Laravel", "JavaScript", "MySQL", "JQuery", "Bootstrap", "Tailwind CSS", "Git", "GitHub", "Cpanel", "Linux", "CI/CD", "Nginx", "AWS"]
+    description: "Provided technical support and system maintenance for 10 Hospital Information Systems (HIS), ensuring high availability. Implemented hospital-specific workflows, developed web/backend solutions in PHP/SQL/AJAX, built a patient queuing system, integrated PhilHealth V2 to automate claims transmittal, and developed mobile applications for doctors and nurses using Dart/Flutter.",
+    technologies: ["PHP", "Laravel", "Dart", "Flutter", "JavaScript", "SQL", "AJAX", "PhilHealth V2", "JRXML", "XML", "FPDF"]
   },
   {
     company: "Freelance",
-    role: "Web Developer",
-    period: "Nov 2022 - Jan 2025",
+    role: "Website Designer & Developer",
+    period: "Nov 2022 — Jan 2024",
     type: "Freelance",
     location: "Remote",
-    description: "I offer freelance web development services, crafting both personal and company websites to showcase their unique services and identity. Whether you need a personal site or a platform to promote your company's offerings, I'm here to bring your vision to life.",
-    technologies: ["JavaScript", "MySQL", "HTML", "CSS", "Wordpress", "PHP", "Laravel"]
+    description: "Designed and developed responsive client websites using PHP, JavaScript, jQuery, and custom WordPress solutions. Applied SEO best practices to boost search visibility and managed multiple concurrent projects meeting strict quality and delivery deadlines.",
+    technologies: ["PHP", "JavaScript", "jQuery", "WordPress", "HTML", "CSS", "MySQL", "SEO"]
   },
   {
-    company: "SPLACE BPO",
-    role: "Software Developer",
-    period: "Feb 2023 - May 2023",
+    company: "SPLACE BPO Company",
+    role: "Front End Developer (Intern)",
+    period: "Feb 2023 — Mar 2023",
     type: "Internship",
     location: "Davao, Philippines",
-    description: "Recognized as the \"Best Intern\" by SPLACE in June 2023 for outstanding contributions in accomplishing the company's request system. Demonstrated exceptional dedication and skill in software development during the internship period.",
-    technologies: ["JavaScript", "MySQL", "PHP", "DigitalOcean"]
+    description: "Converted application concepts into user-friendly, responsive web interfaces for mobile and desktop. Contributed to the development of an internal data gathering and lead generation system, enabling structured data capture, storage, and reuse for operational processes.",
+    technologies: ["JavaScript", "HTML", "CSS", "PHP", "MySQL"]
+  },
+  {
+    company: "Jose Maria College Foundation Inc.",
+    role: "Video & Photo Editor",
+    period: "Aug 2021 — May 2022",
+    type: "Part-time",
+    location: "Davao, Philippines",
+    description: "Edited video content and photography for school activities and events using Adobe tools. Organized and managed digital photo and video documentation archives for school operations.",
+    technologies: ["Adobe Photoshop", "Adobe After Effects", "Figma", "Canva"]
   }
 ];
 
-export const PROJECTS_DATA = [
+export interface ProjectItem {
+  title: string;
+  category: string;
+  filterCategory: string;
+  description: string;
+  longDescription: string;
+  highlights: string[];
+  tags: string[];
+  image: string;
+  link?: string;
+  github?: string;
+  domain?: string;
+  status?: string;
+  videoEmbedUrl?: string;
+}
+
+export const PROJECTS_DATA: ProjectItem[] = [
   {
-    title: "Shape and Glow",
-    category: "Wordpress Website",
-    description: "A website for a beauty salon that showcases their services and products.",
-    tags: ["Wordpress", "PHP", "Cpanel", "Linux"],
-    image: "/images/projects/shape_and_glow.png",
-    link: "https://www.shapeandglow.com.au/",
-    github: "#"
+    title: "E-Resonz",
+    category: "OCR / AI Platform",
+    filterCategory: "AI & Full-Stack",
+    description: "Enterprise document OCR platform integrating Python/FastAPI with local Ollama LLMs for automated invoice extraction and structured data processing.",
+    longDescription: "E-Resonz is an intelligent document processing engine engineered to eliminate manual accounting data entry. It processes multi-format invoices, receipts, and financial statements, extracting tabular data and metadata with high precision while keeping inference fully local.",
+    highlights: [
+      "Local LLM inference via Ollama to ensure complete data sovereignty and zero cloud leakage",
+      "High-performance asynchronous FastAPI microservice deployed on AWS EC2 with Nginx reverse proxy",
+      "Type-safe React + TypeScript frontend featuring drag-and-drop document intake and structured JSON schema export"
+    ],
+    tags: ["React", "TypeScript", "Python", "FastAPI", "Ollama", "AWS", "Nginx", "Docker"],
+    image: "/images/projects/E_Resonz.png",
+    link: "https://test.app-prokakis.com/",
+    github: "#",
+    domain: "test.app-prokakis.com",
+    status: "Live Production"
   },
   {
-    title: "Davista - Davao Tourism Game",
-    category: "Game",
-    description: "Davista is a captivating tourism game that immerses players in Davao City's vibrant culture and rich history. Players explore iconic landmarks while uncovering historical facts and trivia through engaging gameplay.",
-    tags: ["Unreal Engine 5", "3D Modeling", "Game Design", "Blueprint Scripting"],
+    title: "Shape and Glow",
+    category: "WordPress / Client",
+    filterCategory: "CMS & Client",
+    description: "Production website for an Australian aesthetics salon, featuring custom theme architecture, service booking integrations, and targeted SEO optimization.",
+    longDescription: "Built for an Australian beauty salon client, Shape and Glow provides a sleek customer journey from service discovery to online booking. Developed with custom WordPress theme files, mobile-responsive layout, and high-performance server-side caching.",
+    highlights: [
+      "Custom bespoke WordPress theme engineered without bloated page builders for maximum performance",
+      "Integrated third-party booking gateway with automatic client reservation confirmations",
+      "Optimized technical SEO, WebP image compression, and cPanel/Linux server configuration"
+    ],
+    tags: ["WordPress", "PHP", "cPanel", "Linux", "SEO", "Custom Theme"],
+    image: "/images/projects/shape_and_glow.png",
+    link: "https://www.shapeandglow.com.au/",
+    github: "#",
+    domain: "shapeandglow.com.au",
+    status: "Live Client"
+  },
+  {
+    title: "Davista",
+    category: "Game / Unreal Engine 5",
+    filterCategory: "3D & Interactive",
+    description: "Interactive 3D exploration experience built in Unreal Engine 5 showcasing Davao City landmarks with custom architectural assets and dynamic lighting.",
+    longDescription: "Davista is an interactive tourism exploration project showcasing notable landmarks in Davao City, Philippines. Powered by Unreal Engine 5, it features realistic architectural models created in Blender, dynamic Lumen global illumination, and intuitive exploration mechanics.",
+    highlights: [
+      "Custom 3D modeling and texturing of real-world Davao City architectural landmarks in Blender",
+      "Interactive gameplay mechanisms, quest triggers, and navigation implemented in UE5 Blueprints",
+      "Utilized Lumen lighting and Nanite geometry for high-fidelity real-time rendering"
+    ],
+    tags: ["Unreal Engine 5", "Blender", "3D Modeling", "Game Design", "Blueprint Scripting"],
     image: "/images/projects/davista.png",
     link: "https://www.youtube.com/watch?v=m6YKyCJjtlA",
-    github: "#"
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/m6YKyCJjtlA?autoplay=1",
+    github: "#",
+    domain: "youtube.com/watch?v=m6YKyCJjtlA",
+    status: "Video Showcase"
   },
   {
     title: "NIKX",
-    category: "Web Game",
-    description: "NIKX is a web game that allows users to test their typing speed and accuracy.",
-    tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    category: "Web Application",
+    filterCategory: "Web Applications",
+    description: "Real-time typing speed and accuracy engine with live telemetry, dynamic sentence generation, and persistent personal record tracking.",
+    longDescription: "NIKX is a typing test web application built for keyboard enthusiasts. It monitors keystroke timing at millisecond resolution, calculates real-time Words Per Minute (WPM) and accuracy percentages, and provides a distraction-free keyboarding environment.",
+    highlights: [
+      "Real-time keystroke event processing and accurate WPM telemetry engine",
+      "Dynamic prompt generation with variable test durations and error highlighting",
+      "Responsive Tailwind CSS UI deployed on Vercel with automated preview deployments"
+    ],
+    tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Vercel"],
     image: "/images/projects/nikx.png",
     link: "https://nikx-mu.vercel.app/",
-    github: "https://github.com/franzdacara/NIKX"
-  },
-  {
-    title: "Dine Out",
-    category: "E-Commerce",
-    description: "Dine Out is a restaurant reservation platform that allows users to book tables at their favorite restaurants with ease.",
-    tags: ["HTML", "CSS", "JavaScript"],
-    image: "/images/projects/dinteout.png",
-    link: "https://franzdacara.github.io/Dine-Our-Restaurant/",
-    github: "https://github.com/franzdacara/Dine-Our-Restaurant"
+    github: "https://github.com/franzdacara/NIKX",
+    domain: "nikx-mu.vercel.app",
+    status: "Live Web App"
   },
   {
     title: "NiksBakerySystem",
-    category: "Inventory Management System",
-    description: "A simple bakery management system that allows users to manage their bakery's inventory and sales.",
-    tags: ["Typescript, React, Tailwind CSS, Vite, Git, GitHub, Vercel"],
+    category: "Inventory & POS",
+    filterCategory: "Web Applications",
+    description: "Commercial bakery inventory management and point-of-sale portal designed for batch recipe tracking, stock depletion, and sales reporting.",
+    longDescription: "Designed to streamline retail bakery operations, NiksBakerySystem provides ingredient inventory management, batch production tracking, and sales analytics in a fast, intuitive client-side portal.",
+    highlights: [
+      "Ingredient-to-product mapping for automated recipe stock depletion tracking",
+      "Point-of-sale transaction logging and daily revenue reporting dashboards",
+      "Modular React state architecture engineered for rapid order entry on tablet touchscreens"
+    ],
+    tags: ["TypeScript", "React", "Tailwind CSS", "Vite", "CRUD"],
     image: "/images/projects/niks_bakery_system.png",
     link: "https://niks-bakery-system.vercel.app/",
-    github: "https://github.com/franzdacara/NiksBakerySystem"
+    github: "https://github.com/franzdacara/NiksBakerySystem",
+    domain: "niks-bakery-system.vercel.app",
+    status: "Live Web App"
   },
   {
-    title: "E-Resonz",
-    category: "Optical Character Recognition (OCR)",
-    description: "E-Resonz is a web application that allows users to upload an image and extract text from it.",
-    tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Git", "Python", "SQL", "FastAPI", "Ollama", "Cpanel", "Linux", "CI/CD", "Nginx", "AWS"],
-    image: "/images/projects/E_Resonz.png",
-    link: "https://test.app-prokakis.com/",
-    github: "#"
+    title: "Dine Out",
+    category: "Frontend Static",
+    filterCategory: "Web Applications",
+    description: "High-performance restaurant reservation and dining menu platform built exclusively with vanilla JavaScript, modern CSS, and semantic HTML5.",
+    longDescription: "Dine Out demonstrates core web fundamentals: building a modern, responsive, and visually rich dining reservation website with zero dependencies, zero bundlers, and minimal overhead.",
+    highlights: [
+      "Sub-50KB total asset payload delivering near-instant First Contentful Paint",
+      "Custom vanilla JavaScript form validation and accessible interactive booking controls",
+      "Responsive multi-tier layout styled with modern CSS variables and flexbox"
+    ],
+    tags: ["HTML5", "CSS3", "JavaScript", "GitHub Pages", "Performance"],
+    image: "/images/projects/dinteout.png",
+    link: "https://franzdacara.github.io/Dine-Our-Restaurant/",
+    github: "https://github.com/franzdacara/Dine-Our-Restaurant",
+    domain: "franzdacara.github.io",
+    status: "Live Web App"
   }
 ];

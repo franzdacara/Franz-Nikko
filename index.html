@@ -4,111 +4,156 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nikko | Software Developer</title>
+  <meta name="description" content="Nikko Dacara — Full-stack developer specializing in Laravel, React, and healthcare information systems. Based in Davao City, Philippines." />
+  <title>Nikko Dacara — Software Developer</title>
   <link rel="icon" type="image/png" href="/favicon.png">
   <script src="/js/tailwindcss.js"></script>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
     rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
           },
           colors: {
-            neon: {
-              blue: '#00f3ff',
-              purple: '#bc13fe',
-              dark: '#020617',
+            surface: {
+              DEFAULT: '#0e0e0e',
+              raised: '#161616',
+              overlay: '#1c1c1c',
+            },
+            border: {
+              DEFAULT: '#262626',
+              subtle: '#1e1e1e',
+              hover: '#3f3f46',
+            },
+            accent: {
+              DEFAULT: '#f59e0b',
+              hover: '#fbbf24',
+              muted: 'rgba(245, 158, 11, 0.12)',
+            },
+            text: {
+              primary: '#e4e4e7',
+              secondary: '#a1a1aa',
+              muted: '#71717a',
             }
           },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'spin-slow': 'spin 12s linear infinite',
+          fontSize: {
+            'display': ['clamp(3rem, 8vw, 6rem)', { lineHeight: '0.95', letterSpacing: '-0.03em', fontWeight: '800' }],
+            'heading': ['clamp(1.75rem, 4vw, 2.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
           },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' },
-            }
-          }
         }
       }
     }
   </script>
   <style>
-    body {
-      background-color: #020617;
-      color: #e2e8f0;
-      overflow-x: hidden;
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Custom Scrollbar */
+    body {
+      background-color: #0e0e0e;
+      color: #e4e4e7;
+      overflow-x: hidden;
+      font-feature-settings: 'ss01', 'cv01';
+    }
+
+    /* Scrollbar — minimal, functional */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
 
     ::-webkit-scrollbar-track {
-      background: #0f172a;
+      background: #0e0e0e;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #334155;
-      border-radius: 4px;
+      background: #262626;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #475569;
+      background: #3f3f46;
     }
 
-    .glass-panel {
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    /* Selection */
+    ::selection {
+      background: rgba(245, 158, 11, 0.3);
+      color: #e4e4e7;
     }
 
-    .neon-glow {
-      text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+    /* Utility: border-accent highlight for active elements */
+    .border-accent-active {
+      border-color: #f59e0b;
     }
 
-    .grid-bg {
-      background-size: 50px 50px;
-      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    /* Subtle noise texture for surfaces */
+    .surface-noise {
+      position: relative;
+    }
+    .surface-noise::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* 3D Tilt Card Base Styles */
-    .tilt-card {
-      transition: transform 0.1s ease-out;
-      transform-style: preserve-3d;
-      transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale3d(var(--s, 1), var(--s, 1), var(--s, 1));
-      will-change: transform;
-    }
-
-    .tilt-card-content {
-      transform: translateZ(20px);
+    /* Grid rule — subtle horizontal rules */
+    .grid-rule {
+      background-image: linear-gradient(to bottom, transparent calc(100% - 1px), #262626 calc(100% - 1px));
+      background-size: 100% 80px;
     }
 
     /* Scanline effect for Preloader */
     .scanline {
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15));
       background-size: 100% 4px;
       animation: scanline 10s linear infinite;
     }
 
     @keyframes scanline {
-      0% {
-        background-position: 0 0;
-      }
+      0% { background-position: 0 0; }
+      100% { background-position: 0 100%; }
+    }
 
-      100% {
-        background-position: 0 100%;
-      }
+    /* Hard shift hover — used on interactive cards */
+    .hover-shift {
+      transition: transform 150ms cubic-bezier(0.33, 1, 0.68, 1), border-color 150ms ease;
+    }
+    .hover-shift:hover {
+      transform: translateY(-2px) translateX(2px);
+    }
+
+    /* Tag style */
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6875rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid #262626;
+      color: #a1a1aa;
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+
+    .tag:hover {
+      color: #f59e0b;
+      border-color: #f59e0b;
+    }
+
+    /* Section label — small monospace category labels */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f59e0b;
     }
   </style>
   <script type="importmap">

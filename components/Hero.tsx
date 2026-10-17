@@ -1,114 +1,113 @@
-import React, { useEffect, useState } from 'react';
-import { ChevronDown, Terminal, Code2, Globe, Cpu } from 'lucide-react';
+import React from 'react';
+import { ArrowDown } from 'lucide-react';
 import { SITE_CONTENT } from '../constants';
 
 const Hero: React.FC = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5) * 2;
-      const y = (clientY / innerHeight - 0.5) * 2;
-      setMousePos({ x, y });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   const { hero, contact } = SITE_CONTENT;
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 perspective-1000">
-      {/* Layer 0: Deep Background Grid (Moves opposite to mouse, slow) */}
-      <div
-        className="absolute inset-0 z-0 opacity-20 transform-gpu transition-transform duration-100 ease-out"
+    <section id="home" className="relative min-h-screen flex items-end pb-24 pt-32 overflow-hidden">
+
+      {/* Minimal grid background */}
+      <div className="absolute inset-0 z-0 opacity-[0.04]"
         style={{
-          transform: `perspective(1000px) rotateX(${60 + mousePos.y * 2}deg) rotateY(${mousePos.x * 2}deg) scale(2)`
+          backgroundSize: '60px 60px',
+          backgroundImage: 'linear-gradient(to right, #e4e4e7 1px, transparent 1px), linear-gradient(to bottom, #e4e4e7 1px, transparent 1px)',
         }}
-      >
-        <div className="absolute inset-0 bg-neon-blue/5 grid-bg" />
-      </div>
+      />
 
-      {/* Layer 1: Floating Tech Particles (Moves opposite to mouse, fast) */}
-      <div
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-          transform: `translate(${mousePos.x * -40}px, ${mousePos.y * -40}px)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      >
-        <Terminal className="absolute top-1/4 left-1/4 text-neon-purple/20 w-16 h-16 animate-float" />
-        <Code2 className="absolute bottom-1/3 right-1/4 text-neon-blue/20 w-24 h-24 animate-float delay-1000" />
-        <Cpu className="absolute top-1/3 right-10 text-emerald-500/10 w-20 h-20 animate-float delay-500" />
-        <Globe className="absolute bottom-20 left-20 text-cyan-500/10 w-12 h-12 animate-float delay-200" />
-        <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-neon-blue/30 rounded-full blur-sm" />
-        <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-neon-purple/30 rounded-full blur-sm" />
-      </div>
+      {/* Accent line — vertical, left-aligned */}
+      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-accent/20 to-transparent z-0" />
 
-      {/* Layer 2: Main Content (Moves slightly opposite to mouse) */}
-      <div
-        className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col items-center text-center transform-gpu"
-        style={{
-          transform: `translate(${mousePos.x * -15}px, ${mousePos.y * -15}px)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      >
-        <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-neon-blue/30 bg-neon-blue/5 backdrop-blur-sm shadow-[0_0_15px_rgba(0,243,255,0.2)]">
-          <span className="text-neon-blue text-xs font-mono tracking-widest uppercase">{hero.status}</span>
-        </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 neon-glow">
-          <span className="block text-slate-400 text-2xl md:text-4xl font-normal mb-2 tracking-normal font-mono">{hero.greeting}</span>
-          {hero.name}
-        </h1>
+          {/* Main content — left-weighted */}
+          <div className="lg:col-span-8">
 
-        <p className="max-w-2xl text-lg md:text-xl text-slate-400 mb-10 leading-relaxed backdrop-blur-sm">
-          A <span className="text-neon-purple font-semibold">{hero.title}</span> fusing <span className="text-neon-blue font-semibold">AI Intelligence</span> with <span className="text-neon-purple font-semibold">Tech Innovation</span>.
-          <br className="hidden md:block" />
-          {hero.description}
-        </p>
+            {/* Status badge */}
+            <div className="inline-flex items-center gap-2 mb-8">
+              <span className="w-2 h-2 bg-accent rounded-full" />
+              <span className="section-label">{hero.status}</span>
+            </div>
 
-        <div className="flex items-center gap-4 mb-12">
-          <a href="#projects" className="px-8 py-3 bg-neon-blue text-neon-dark font-bold rounded-lg hover:bg-cyan-300 transition-all shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_30px_rgba(0,243,255,0.5)] transform hover:-translate-y-1">
-            {hero.cta.primary}
-          </a>
-          <a href={SITE_CONTENT.brand.resume} target="_blank" rel="noopener noreferrer" className="px-8 py-3 glass-panel text-white font-semibold rounded-lg hover:bg-white/10 transition-all border border-white/10 hover:border-white/30">
-            Resume
-          </a>
-        </div>
+            <h1 className="text-display text-text-primary mb-6">
+              <span className="block text-text-muted text-lg md:text-xl font-normal font-mono tracking-wide mb-3">{hero.greeting}</span>
+              {hero.name}
+              <span className="text-accent">.</span>
+            </h1>
 
-        {/* Social Links */}
-        <div className="flex gap-6 text-slate-400">
-          {contact.socialLinks.map((link, idx) => {
-            const Icon = link.icon;
-            return (
-              <a key={idx} href={link.url} className="hover:text-neon-blue transition-colors hover:scale-110 transform duration-200" aria-label={link.platform}>
-                <Icon size={24} />
+            <p className="text-lg md:text-xl text-text-secondary max-w-2xl mb-4 leading-relaxed">
+              {hero.subtitle}
+            </p>
+
+            <p className="font-mono text-sm text-text-muted max-w-xl mb-10 leading-relaxed">
+              {hero.description}
+            </p>
+
+            {/* CTA row */}
+            <div className="flex flex-wrap items-center gap-4 mb-12">
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-surface font-semibold text-sm hover:bg-accent-hover transition-colors duration-150"
+              >
+                {hero.cta.primary}
               </a>
-            );
-          })}
+              <a
+                href={SITE_CONTENT.brand.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary text-sm font-medium hover:border-text-muted hover:text-text-primary transition-all duration-150"
+              >
+                {hero.cta.secondary}
+              </a>
+            </div>
+
+            {/* Social links — horizontal, minimal */}
+            <div className="flex items-center gap-6">
+              {contact.socialLinks.map((link, idx) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={idx}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-muted hover:text-accent transition-colors duration-150"
+                    aria-label={link.platform}
+                  >
+                    <Icon size={18} />
+                  </a>
+                );
+              })}
+              <span className="w-12 h-px bg-border" />
+              <span className="font-mono text-xs text-text-muted">Davao City, PH</span>
+            </div>
+          </div>
+
+          {/* Right column — metadata sidebar */}
+          <div className="lg:col-span-4 hidden lg:flex flex-col gap-6 items-end text-right">
+            <div className="border-r border-border pr-6 space-y-6">
+              <div>
+                <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase block mb-1">Role</span>
+                <span className="text-sm text-text-primary">{hero.title}</span>
+              </div>
+              <div>
+                <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase block mb-1">Stack</span>
+                <span className="text-sm text-text-primary font-mono">Laravel · React · PHP</span>
+              </div>
+              <div>
+                <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase block mb-1">Availability</span>
+                <span className="text-sm text-accent">{hero.status}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Layer 3: Foreground Elements (Moves with mouse, very fast) */}
-      <div
-        className="absolute inset-0 pointer-events-none z-20"
-        style={{
-          transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      >
-        {/* Decorative geometrical shapes */}
-        <div className="absolute top-1/4 left-10 md:left-20 w-20 h-20 border border-neon-purple/20 rounded-xl animate-float opacity-50 rotate-12 backdrop-blur-[2px]" />
-        <div className="absolute bottom-1/3 right-10 md:right-20 w-32 h-32 border border-neon-blue/20 rounded-full animate-float opacity-50 delay-700 backdrop-blur-[2px]" />
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500 z-30">
-        <ChevronDown size={24} />
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+        <ArrowDown size={16} className="text-text-muted animate-bounce" />
       </div>
     </section>
   );

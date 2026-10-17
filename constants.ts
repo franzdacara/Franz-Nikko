@@ -28,8 +28,8 @@ export const SITE_CONTENT = {
     image: "/images/profile/NIKKO.jpg",
     stats: [
       { label: "10 HIS Systems", description: "Maintained 10 hospital information systems & PhilHealth V2 automation.", icon: Globe },
-      { label: "Local AI & CI/CD", description: "OCR web APIs with local AI models & automated deployment pipelines.", icon: Cpu },
-      { label: "BSIT Honors", description: "Administrator's List honor graduate, Jose Maria College Foundation Inc.", icon: Award }
+      { label: "Local AI & OCR", description: "High-throughput OCR web APIs with local AI models and document processing.", icon: Cpu },
+      { label: "DevOps & Cloud", description: "Automated GitHub Actions CI/CD pipelines, Docker containerization & Nginx proxying.", icon: Server }
     ]
   },
   contact: {

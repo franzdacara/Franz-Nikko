@@ -5,12 +5,25 @@ import { SITE_CONTENT } from '../constants';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 40);
+          const winScroll = document.documentElement.scrollTop;
+          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          if (height > 0) {
+            setScrollProgress((winScroll / height) * 100);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -45,16 +58,16 @@ const Navbar: React.FC = () => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-200 ${scrolled
-          ? 'bg-surface/95 backdrop-blur-sm border-b border-border py-3'
-          : 'bg-transparent py-5'
+        ? 'bg-surface/95 backdrop-blur-md border-border py-3 shadow-lg'
+        : 'bg-transparent py-5'
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center relative">
         {/* Logo */}
         <a
           href="#"
           onClick={(e) => handleNavClick(e, '#')}
-          className="flex items-center gap-0 group"
+          className="flex items-center gap-0 group cursor-pointer"
         >
           <span className="font-mono font-bold text-sm tracking-tight text-text-primary group-hover:text-accent transition-colors duration-150">
             {SITE_CONTENT.brand.name}
@@ -69,9 +82,10 @@ const Navbar: React.FC = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-xs font-mono tracking-wide text-text-muted hover:text-text-primary px-3 py-2 transition-colors duration-150"
+              className="text-xs font-mono tracking-wide text-text-muted hover:text-text-primary px-3 py-2 transition-colors duration-150 relative group"
             >
-              {link.name}
+              <span>{link.name}</span>
+              <span className="absolute bottom-1 left-3 right-3 h-px bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-150 origin-left" />
             </a>
           ))}
           <a
@@ -80,12 +94,12 @@ const Navbar: React.FC = () => {
             rel="noopener noreferrer"
             className="text-xs font-mono tracking-wide text-text-muted hover:text-text-primary px-3 py-2 transition-colors duration-150"
           >
-            Resume
+            Resume ↗
           </a>
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="ml-4 text-xs font-mono tracking-wide px-4 py-2 border border-accent text-accent hover:bg-accent hover:text-surface transition-all duration-150"
+            className="btn-tactile-primary ml-4 text-xs font-mono tracking-wide px-4 py-2 font-semibold"
           >
             Contact
           </a>
@@ -93,7 +107,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-text-secondary hover:text-text-primary transition-colors"
+          className="md:hidden text-text-secondary hover:text-text-primary transition-colors p-1"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation menu"
         >
@@ -101,18 +115,24 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Hardware-Accelerated Scroll Progress Indicator */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-surface border-b border-border transition-all duration-200 overflow-hidden ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        className="absolute bottom-0 left-0 h-[1.5px] bg-accent transition-all duration-75 will-change-transform"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
+      {/* Mobile Drawer */}
+      <div
+        className={`md:hidden fixed inset-x-0 top-[100%] bg-surface-raised border-b border-border transition-all duration-200 overflow-hidden ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
           }`}
       >
-        <div className="flex flex-col px-6 py-4 gap-1">
+        <div className="px-6 py-4 flex flex-col gap-3 font-mono text-xs">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-sm font-mono text-text-secondary hover:text-text-primary py-2 transition-colors"
+              className="text-text-secondary hover:text-accent py-2 transition-colors border-b border-border/50"
             >
               {link.name}
             </a>
@@ -121,9 +141,16 @@ const Navbar: React.FC = () => {
             href={SITE_CONTENT.brand.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-mono text-text-secondary hover:text-text-primary py-2 transition-colors"
+            className="text-text-secondary hover:text-accent py-2 transition-colors border-b border-border/50"
           >
-            Resume
+            Resume ↗
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className="btn-tactile-primary text-center py-2.5 mt-2 font-semibold"
+          >
+            Contact
           </a>
         </div>
       </div>

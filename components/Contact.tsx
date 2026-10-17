@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Phone, ArrowUpRight, Send, CheckCircle2, Loader2, MessageSquare, Calendar, Clock, Video, CalendarPlus } from 'lucide-react';
 import { SITE_CONTENT } from '../constants';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 type ContactMode = 'appointment' | 'message';
 
 const Contact: React.FC = () => {
   const { contact } = SITE_CONTENT;
+  const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.05 });
 
   // Active tab: 'appointment' (default) or 'message'
   const [mode, setMode] = useState<ContactMode>('appointment');
@@ -58,7 +60,6 @@ const Contact: React.FC = () => {
     const title = `Meeting: ${appointmentData.name} & Nikko Dacara (${appointmentData.topic})`;
     const details = `Topic: ${appointmentData.topic}\nGuest Email: ${appointmentData.email}\nPlatform: ${appointmentData.platform}\n\nNotes:\n${appointmentData.notes || 'No extra notes'}\n\nHost: Nikko Dacara (${contact.email})`;
 
-    // Default to date selected or today
     const dateFormatted = appointmentData.date ? appointmentData.date.replace(/-/g, '') : todayStr.replace(/-/g, '');
     const dates = `${dateFormatted}T060000Z/${dateFormatted}T070000Z`;
 
@@ -97,14 +98,14 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative border-t border-border">
+    <section id="contact" ref={sectionRef} className="py-24 relative border-t border-border">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
 
           {/* Left Column — Contact Info & Direct Links */}
           <div className="lg:col-span-5 flex flex-col justify-between">
-            <div>
+            <div className={`reveal-init delay-75 ${isVisible ? 'reveal-visible' : ''}`}>
               <span className="section-label block mb-3">Get Connected</span>
               <h2 className="text-heading text-text-primary mb-6">
                 {contact.title}
@@ -113,8 +114,8 @@ const Contact: React.FC = () => {
                 Schedule a technical discussion, interview, or consultation directly into my calendar, or send a direct inquiry to my Gmail.
               </p>
 
-              {/* Direct Info Card */}
-              <div className="border border-border p-5 bg-surface-raised space-y-4 mb-8">
+              {/* Direct Info Card with corner crosshairs */}
+              <div className="border border-border p-5 bg-surface-raised space-y-4 mb-8 relative corner-crosshair">
                 <div>
                   <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase block mb-1">
                     Google Email
@@ -169,7 +170,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Social Links */}
-            <div>
+            <div className={`reveal-init delay-150 ${isVisible ? 'reveal-visible' : ''}`}>
               <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase block mb-3">
                 Social Profiles
               </span>
@@ -180,7 +181,7 @@ const Contact: React.FC = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3.5 py-2 border border-border text-xs text-text-secondary font-mono hover:text-accent hover:border-accent transition-all duration-150 bg-surface-raised"
+                    className="btn-tactile-secondary inline-flex items-center gap-2 px-3.5 py-2 text-xs font-mono"
                     aria-label={social.platform}
                   >
                     <social.icon size={13} />
@@ -194,47 +195,58 @@ const Contact: React.FC = () => {
 
           {/* Right Column — Interactive Scheduler & Contact Form */}
           <div className="lg:col-span-7">
-            <div className="border border-border bg-surface-raised overflow-hidden">
+            <div className={`reveal-init delay-150 ${isVisible ? 'reveal-visible' : ''}`}>
 
-              {/* Mode Toggle Header */}
-              <div className="bg-surface px-4 py-2 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-xs">
-                <div className="flex items-center gap-1.5">
+              {/* Architectural Folder Tabs Header */}
+              <div className="flex items-end justify-between border-b border-border font-mono text-xs">
+                <div className="flex items-end">
+                  {/* Book Appointment Tab */}
                   <button
                     type="button"
                     onClick={() => { setMode('appointment'); setSubmitted(false); }}
-                    className={`px-3 py-1.5 border transition-all flex items-center gap-1.5 text-xs ${mode === 'appointment'
-                      ? 'border-accent bg-accent/10 text-accent font-semibold'
-                      : 'border-transparent text-text-muted hover:text-text-primary'
-                      }`}
+                    className={`px-4 sm:px-5 py-3 flex items-center gap-2 text-xs font-mono transition-all cursor-pointer select-none ${
+                      mode === 'appointment'
+                        ? 'bg-surface-raised border-t-2 border-t-accent border-l border-r border-border text-text-primary font-semibold relative z-10 -mb-[1px]'
+                        : 'bg-surface/40 border-t border-l border-r border-border/40 text-text-muted hover:text-text-primary hover:bg-surface/70'
+                    }`}
                   >
-                    <Calendar size={13} />
+                    <Calendar size={13} className={mode === 'appointment' ? 'text-accent' : 'text-text-muted'} />
                     <span>Book Appointment</span>
+                    {mode === 'appointment' && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent ml-0.5 animate-pulse" />
+                    )}
                   </button>
 
+                  {/* Send Message Tab */}
                   <button
                     type="button"
                     onClick={() => { setMode('message'); setSubmitted(false); }}
-                    className={`px-3 py-1.5 border transition-all flex items-center gap-1.5 text-xs ${mode === 'message'
-                      ? 'border-accent bg-accent/10 text-accent font-semibold'
-                      : 'border-transparent text-text-muted hover:text-text-primary'
-                      }`}
+                    className={`-ml-[1px] px-4 sm:px-5 py-3 flex items-center gap-2 text-xs font-mono transition-all cursor-pointer select-none ${
+                      mode === 'message'
+                        ? 'bg-surface-raised border-t-2 border-t-accent border-l border-r border-border text-text-primary font-semibold relative z-10 -mb-[1px]'
+                        : 'bg-surface/40 border-t border-l border-r border-border/40 text-text-muted hover:text-text-primary hover:bg-surface/70'
+                    }`}
                   >
-                    <MessageSquare size={13} />
+                    <MessageSquare size={13} className={mode === 'message' ? 'text-accent' : 'text-text-muted'} />
                     <span>Send Message</span>
+                    {mode === 'message' && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent ml-0.5 animate-pulse" />
+                    )}
                   </button>
                 </div>
 
-                <span className="text-[10px] text-text-muted uppercase tracking-wider hidden sm:inline">
-                  LINKED // GMAIL WEB
-                </span>
+                <div className="hidden sm:flex items-center gap-2 pb-2.5 pr-3 text-[10px] text-text-muted uppercase tracking-wider font-mono">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent/60" />
+                  <span>LINKED // GMAIL WEB</span>
+                </div>
               </div>
 
-              {/* Form Content */}
-              <div className="p-6 sm:p-8">
+              {/* Form Content / Folder Body */}
+              <div className="border-x border-b border-border bg-surface-raised p-6 sm:p-8 relative corner-crosshair">
 
                 {/* SUCCESS / CONFIRMATION VIEW */}
                 {submitted ? (
-                  <div className="py-6 text-center space-y-5">
+                  <div className="py-6 text-center space-y-5 animate-in fade-in duration-200">
                     <div className="w-12 h-12 border border-accent/40 bg-accent/10 text-accent flex items-center justify-center mx-auto">
                       <CheckCircle2 size={24} />
                     </div>
@@ -260,13 +272,13 @@ const Contact: React.FC = () => {
                       </div>
                     )}
 
-                    {/* Action buttons */}
+                    {/* Action buttons with tactile styling */}
                     <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                       <a
                         href={mode === 'appointment' ? getAppointmentGmailUrl() : getMessageGmailUrl()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-5 py-2.5 bg-accent text-surface font-semibold text-xs font-mono uppercase tracking-wider flex items-center gap-2 hover:bg-accent-hover transition-colors shadow-md"
+                        className="btn-tactile-primary px-5 py-2.5 font-semibold text-xs font-mono uppercase tracking-wider flex items-center gap-2"
                       >
                         <Mail size={13} />
                         Re-open in Gmail ↗
@@ -277,7 +289,7 @@ const Contact: React.FC = () => {
                           href={getGoogleCalendarUrl()}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-2.5 border border-border bg-surface text-xs font-mono text-text-primary hover:text-accent hover:border-accent transition-colors flex items-center gap-1.5"
+                          className="btn-tactile-secondary px-4 py-2.5 text-xs font-mono flex items-center gap-1.5"
                         >
                           <CalendarPlus size={13} />
                           Add to Google Calendar ↗
@@ -286,7 +298,7 @@ const Contact: React.FC = () => {
 
                       <button
                         onClick={handleReset}
-                        className="px-4 py-2.5 border border-border text-xs font-mono text-text-muted hover:text-text-primary hover:border-text-muted transition-colors uppercase tracking-wider"
+                        className="btn-tactile-secondary px-4 py-2.5 text-xs font-mono uppercase tracking-wider cursor-pointer"
                       >
                         New Submission
                       </button>
@@ -345,7 +357,7 @@ const Contact: React.FC = () => {
                               min={todayStr}
                               value={appointmentData.date}
                               onChange={(e) => setAppointmentData({ ...appointmentData, date: e.target.value })}
-                              className="w-full bg-surface border border-border px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:border-accent transition-colors font-mono"
+                              className="w-full bg-surface border border-border px-3.5 py-2.5 text-sm text-text-primary focus:outline-none focus:border-accent transition-colors font-mono cursor-pointer"
                             />
                           </div>
 
@@ -428,7 +440,7 @@ const Contact: React.FC = () => {
                           <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="px-6 py-3 bg-accent text-surface font-semibold text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-accent-hover transition-colors disabled:opacity-60 cursor-pointer shadow-md"
+                            className="btn-tactile-primary px-6 py-3 font-semibold text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
                           >
                             {isSubmitting ? (
                               <>
@@ -522,7 +534,7 @@ const Contact: React.FC = () => {
                           <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="px-6 py-3 bg-accent text-surface font-semibold text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-accent-hover transition-colors disabled:opacity-60 cursor-pointer shadow-md"
+                            className="btn-tactile-primary px-6 py-3 font-semibold text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
                           >
                             {isSubmitting ? (
                               <>

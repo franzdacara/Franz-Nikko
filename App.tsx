@@ -8,6 +8,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Preloader from './components/Preloader';
 import ChatBot from './components/ChatBot';
+import ArchitecturalBackground from './components/ArchitecturalBackground';
 import { ArrowUp } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -32,6 +33,9 @@ const App: React.FC = () => {
       <ChatBot />
 
       <div className={`relative min-h-screen bg-surface transition-opacity duration-700 ${loading ? 'opacity-0 overflow-hidden h-screen' : 'opacity-100'}`}>
+
+        {/* Global Hardware-Accelerated Architectural Parallax Background */}
+        <ArchitecturalBackground />
 
         <Navbar />
 

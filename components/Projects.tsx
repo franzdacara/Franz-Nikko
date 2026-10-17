@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { ExternalLink, Github, ArrowUpRight, Eye, X, ChevronLeft, ChevronRight, CheckCircle2, Play } from 'lucide-react';
 import { PROJECTS_DATA, ProjectItem } from '../constants';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const CATEGORIES = ['All', 'AI & Full-Stack', 'Web Applications', 'CMS & Client', '3D & Interactive'] as const;
 
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [previewProject, setPreviewProject] = useState<ProjectItem | null>(null);
+  const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.05 });
 
   const filteredProjects = selectedCategory === 'All'
     ? PROJECTS_DATA
@@ -57,18 +59,20 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-24 relative border-t border-border">
+    <section id="projects" ref={sectionRef} className="py-24 relative border-t border-border">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-end">
           <div className="lg:col-span-4">
-            <span className="section-label block mb-3">Portfolio</span>
-            <h2 className="text-heading text-text-primary">
+            <span className={`section-label block mb-3 reveal-init delay-75 ${isVisible ? 'reveal-visible' : ''}`}>
+              Portfolio
+            </span>
+            <h2 className={`text-heading text-text-primary reveal-init delay-75 ${isVisible ? 'reveal-visible' : ''}`}>
               Selected Work
             </h2>
           </div>
-          <div className="lg:col-span-8 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className={`lg:col-span-8 flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal-init delay-150 ${isVisible ? 'reveal-visible' : ''}`}>
             <p className="text-sm text-text-muted max-w-lg leading-relaxed">
               Production systems, local AI pipelines, and client deliverables. Click any project card to inspect the interactive preview and architectural specifications.
             </p>
@@ -78,8 +82,8 @@ const Projects: React.FC = () => {
           </div>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-border">
+        {/* Category Filter Tabs with tactile feedback */}
+        <div className={`flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-border reveal-init delay-150 ${isVisible ? 'reveal-visible' : ''}`}>
           {CATEGORIES.map(category => {
             const count = category === 'All'
               ? PROJECTS_DATA.length
@@ -90,9 +94,9 @@ const Projects: React.FC = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-3.5 py-1.5 font-mono text-xs transition-all duration-150 flex items-center gap-2 border ${isActive
-                  ? 'border-accent bg-accent/10 text-accent font-semibold'
-                  : 'border-border bg-surface-raised text-text-muted hover:text-text-primary hover:border-text-muted'
+                className={`px-3.5 py-1.5 font-mono text-xs transition-all duration-150 flex items-center gap-2 border cursor-pointer ${isActive
+                  ? 'border-accent bg-accent/10 text-accent font-semibold shadow-sm'
+                  : 'border-border bg-surface-raised text-text-muted hover:text-text-primary hover:border-zinc-700'
                   }`}
               >
                 <span>{category}</span>
@@ -104,17 +108,19 @@ const Projects: React.FC = () => {
           })}
         </div>
 
-        {/* Projects Grid — compact 3-column layout */}
+        {/* Projects Grid — compact 3-column layout with staggered reveal */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project, idx) => {
             const globalIndex = PROJECTS_DATA.findIndex(p => p.title === project.title);
+            const staggerClasses = ['delay-75', 'delay-150', 'delay-225', 'delay-300', 'delay-375', 'delay-450'];
+            const delayClass = staggerClasses[idx % staggerClasses.length];
 
             return (
               <div
                 key={project.title}
-                className="group bg-surface border border-border hover:border-zinc-700 transition-all duration-200 flex flex-col overflow-hidden"
+                className={`group bg-surface border border-border hover:border-zinc-700 transition-all duration-200 flex flex-col overflow-hidden relative corner-crosshair reveal-init ${delayClass} ${isVisible ? 'reveal-visible' : ''}`}
               >
-                {/* Browser Window Chrome Top Bar — compact */}
+                {/* Browser Window Chrome Top Bar */}
                 <div className="bg-surface-raised px-3 py-1.5 border-b border-border flex items-center justify-between font-mono text-[11px]">
                   {/* Window dots */}
                   <div className="flex items-center gap-1.5">
@@ -156,7 +162,7 @@ const Projects: React.FC = () => {
                         e.stopPropagation();
                         setPreviewProject(project);
                       }}
-                      className="px-3.5 py-1.5 bg-accent text-surface font-semibold text-[11px] font-mono uppercase tracking-wider flex items-center gap-1.5 hover:bg-accent-hover transition-colors shadow-md"
+                      className="btn-tactile-primary px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-wider flex items-center gap-1.5 cursor-pointer"
                     >
                       <Eye size={13} />
                       Inspect Preview
@@ -253,7 +259,7 @@ const Projects: React.FC = () => {
           onClick={() => setPreviewProject(null)}
         >
           <div
-            className="max-w-2xl w-full max-h-[88vh] bg-surface-raised border border-border flex flex-col overflow-hidden shadow-2xl relative"
+            className="max-w-2xl w-full max-h-[88vh] bg-surface-raised border border-border flex flex-col overflow-hidden shadow-2xl relative animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
 
@@ -274,7 +280,7 @@ const Projects: React.FC = () => {
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={handlePrevProject}
-                  className="px-2 py-0.5 border border-border text-text-muted hover:text-text-primary hover:border-text-muted transition-colors flex items-center gap-1 text-[10px]"
+                  className="px-2 py-0.5 border border-border text-text-muted hover:text-text-primary hover:border-text-muted transition-colors flex items-center gap-1 text-[10px] cursor-pointer"
                   title="Previous Project (←)"
                 >
                   <ChevronLeft size={12} />
@@ -282,7 +288,7 @@ const Projects: React.FC = () => {
                 </button>
                 <button
                   onClick={handleNextProject}
-                  className="px-2 py-0.5 border border-border text-text-muted hover:text-text-primary hover:border-text-muted transition-colors flex items-center gap-1 text-[10px]"
+                  className="px-2 py-0.5 border border-border text-text-muted hover:text-text-primary hover:border-text-muted transition-colors flex items-center gap-1 text-[10px] cursor-pointer"
                   title="Next Project (→)"
                 >
                   <span className="hidden sm:inline">Next</span>
@@ -290,7 +296,7 @@ const Projects: React.FC = () => {
                 </button>
                 <button
                   onClick={() => setPreviewProject(null)}
-                  className="w-6 h-6 border border-border text-text-muted hover:text-text-primary hover:border-accent hover:text-accent transition-colors flex items-center justify-center ml-1"
+                  className="w-6 h-6 border border-border text-text-muted hover:text-text-primary hover:border-accent hover:text-accent transition-colors flex items-center justify-center ml-1 cursor-pointer"
                   aria-label="Close Preview"
                 >
                   <X size={13} />
@@ -365,7 +371,7 @@ const Projects: React.FC = () => {
                       href={previewProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-1.5 border border-border bg-surface text-text-secondary hover:text-text-primary hover:border-text-muted transition-colors flex items-center gap-1.5 text-[11px] font-mono"
+                      className="btn-tactile-secondary px-3 py-1.5 flex items-center gap-1.5 text-[11px] font-mono"
                     >
                       <Github size={13} />
                       Source
@@ -376,7 +382,7 @@ const Projects: React.FC = () => {
                       href={previewProject.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3.5 py-1.5 bg-accent text-surface font-semibold hover:bg-accent-hover transition-colors flex items-center gap-1.5 text-[11px] font-mono"
+                      className="btn-tactile-primary px-3.5 py-1.5 font-semibold flex items-center gap-1.5 text-[11px] font-mono"
                     >
                       {previewProject.videoEmbedUrl ? <Play size={13} /> : <ExternalLink size={13} />}
                       {previewProject.videoEmbedUrl ? 'Watch Demo' : 'Launch Site'}

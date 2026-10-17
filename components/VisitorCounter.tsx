@@ -6,14 +6,74 @@ interface VisitorCounterProps {
   variant?: 'minimal' | 'badge' | 'footer';
 }
 
+// Module-level singleton state: ensures only 1 network request ever runs per page load,
+// preventing duplicate increments across multiple mounted components (Hero, Footer) and React StrictMode.
+let singletonPromise: Promise<number> | null = null;
+let memoryCount: number | null = null;
+
+const COUNTER_KEY = 'nikkodacara_portfolio_visits';
+const SESSION_KEY = 'nikko_portfolio_session_counted';
+const CACHE_KEY = 'nikko_real_visit_count';
+
+const getOrFetchRealVisits = async (): Promise<number> => {
+  if (memoryCount !== null) {
+    return memoryCount;
+  }
+  if (singletonPromise) {
+    return singletonPromise;
+  }
+
+  // Lock session IMMEDIATELY and synchronously before any async operations
+  const alreadyCountedInSession = Boolean(sessionStorage.getItem(SESSION_KEY));
+  if (!alreadyCountedInSession) {
+    sessionStorage.setItem(SESSION_KEY, 'true');
+  }
+
+  // Only call 'hit' (+1) if this is a genuine new session. Otherwise call 'get' (read-only).
+  const endpoint = alreadyCountedInSession
+    ? `https://countapi.mileshilliard.com/api/v1/get/${COUNTER_KEY}`
+    : `https://countapi.mileshilliard.com/api/v1/hit/${COUNTER_KEY}`;
+
+  singletonPromise = (async () => {
+    try {
+      const res = await fetch(endpoint, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const data = await res.json();
+      const realCount = typeof data.value === 'number' ? data.value : parseInt(data.value, 10);
+
+      if (!isNaN(realCount)) {
+        memoryCount = realCount;
+        localStorage.setItem(CACHE_KEY, realCount.toString());
+        return realCount;
+      }
+      throw new Error('Invalid value from count API');
+    } catch (err) {
+      console.warn('Count API network error, falling back to cached value:', err);
+      const cached = localStorage.getItem(CACHE_KEY);
+      const fallback = cached ? parseInt(cached, 10) : 1;
+      memoryCount = fallback;
+      return fallback;
+    } finally {
+      singletonPromise = null;
+    }
+  })();
+
+  return singletonPromise;
+};
+
 export const VisitorCounter: React.FC<VisitorCounterProps> = ({
   className = '',
   variant = 'badge',
 }) => {
   const [visits, setVisits] = useState<number | null>(() => {
-    // Read cached count instantly on initial render to prevent layout shift
+    if (memoryCount !== null) return memoryCount;
     try {
-      const cached = localStorage.getItem('nikko_real_visit_count');
+      const cached = localStorage.getItem(CACHE_KEY);
       return cached ? parseInt(cached, 10) : null;
     } catch {
       return null;
@@ -24,54 +84,13 @@ export const VisitorCounter: React.FC<VisitorCounterProps> = ({
 
   useEffect(() => {
     let isMounted = true;
-    const COUNTER_KEY = 'nikkodacara_portfolio_visits';
-    const SESSION_KEY = 'nikko_portfolio_session_counted';
-    const CACHE_KEY = 'nikko_real_visit_count';
 
-    const fetchRealCount = async () => {
-      try {
-        const hasCountedSession = sessionStorage.getItem(SESSION_KEY);
-        // Use 'hit' if new visit session, or 'get' if refreshing in the same session
-        const endpoint = hasCountedSession
-          ? `https://countapi.mileshilliard.com/api/v1/get/${COUNTER_KEY}`
-          : `https://countapi.mileshilliard.com/api/v1/hit/${COUNTER_KEY}`;
-
-        const res = await fetch(endpoint, {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          },
-        });
-
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-        const data = await res.json();
-        const realCount = typeof data.value === 'number' ? data.value : parseInt(data.value, 10);
-
-        if (!isNaN(realCount) && isMounted) {
-          setVisits(realCount);
-          setIsLoading(false);
-          localStorage.setItem(CACHE_KEY, realCount.toString());
-          if (!hasCountedSession) {
-            sessionStorage.setItem(SESSION_KEY, 'true');
-          }
-        }
-      } catch (err) {
-        // In case of network error, use cached value or fallback to local increment
-        console.warn('Real count API unreachable, using local persistent count', err);
-        if (isMounted) {
-          setIsLoading(false);
-          const cached = localStorage.getItem(CACHE_KEY);
-          if (cached) {
-            setVisits(parseInt(cached, 10));
-          } else {
-            setVisits(1);
-          }
-        }
+    getOrFetchRealVisits().then((count) => {
+      if (isMounted) {
+        setVisits(count);
+        setIsLoading(false);
       }
-    };
-
-    fetchRealCount();
+    });
 
     return () => {
       isMounted = false;

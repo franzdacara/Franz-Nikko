@@ -31,7 +31,7 @@ const About: React.FC = () => {
               <div className="border border-border p-4 bg-surface-raised space-y-3 font-mono text-xs relative corner-crosshair">
                 <div className="flex justify-between items-center text-text-muted pb-2 border-b border-border">
                   <span className="text-[11px] uppercase tracking-wider">Role</span>
-                  <span className="text-text-primary text-right font-sans font-medium">Full-Stack & DevOps</span>
+                  <span className="text-text-primary text-right font-sans font-medium">Full Stack Developer & AI Engineer</span>
                 </div>
                 <div className="flex justify-between items-center text-text-muted pb-2 border-b border-border">
                   <span className="text-[11px] uppercase tracking-wider">Location</span>

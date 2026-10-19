@@ -27,10 +27,6 @@ const Experience: React.FC = () => {
                   <span>PRODUCTION EXP</span>
                   <span className="text-accent font-semibold">3+ YEARS</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>DEPLOYED HIS</span>
-                  <span className="text-text-primary">10 HOSPITALS</span>
-                </div>
               </div>
             </div>
           </div>

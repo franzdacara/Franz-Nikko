@@ -22,12 +22,6 @@ const Experience: React.FC = () => {
               <p className="text-sm text-text-muted leading-relaxed">
                 {EXPERIENCE_DATA.length} roles across healthcare systems, automated AI pipelines, and enterprise accounting platforms.
               </p>
-              <div className="mt-8 pt-6 border-t border-border hidden lg:block font-mono text-[11px] text-text-muted space-y-2">
-                <div className="flex justify-between">
-                  <span>PRODUCTION EXP</span>
-                  <span className="text-accent font-semibold">3+ YEARS</span>
-                </div>
-              </div>
             </div>
           </div>
 

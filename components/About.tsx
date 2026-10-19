@@ -39,7 +39,7 @@ const About: React.FC = () => {
                 </div>
                 <div className="flex justify-between items-center text-text-muted pb-2 border-b border-border">
                   <span className="text-[11px] uppercase tracking-wider">Focus</span>
-                  <span className="text-text-primary text-right">Full-Stack & Cloud</span>
+                  <span className="text-text-primary text-right">Web Development & Automations</span>
                 </div>
                 <div className="flex justify-between items-center text-text-muted">
                   <span className="text-[11px] uppercase tracking-wider">Status</span>
